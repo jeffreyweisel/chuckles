@@ -3,7 +3,7 @@
     {
       "id": 1,
       "text": "I went to buy some camo pants but couldn’t find any.",
-      "told": true
+      "told": false
     },
     {
       "id": 2,
@@ -13,12 +13,17 @@
     {
       "id": 3,
       "text": "Most people are shocked when they find out how bad I am as an electrician.",
-      "told": true
+      "told": false
     },
     {
       "id": 5,
       "text": "I failed math so many times at school, I can’t even count",
       "told": false
+    },
+    {
+      "text": "Never trust atoms; they make everything up",
+      "told": true,
+      "id": 8
     }
   ]
 }

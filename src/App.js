@@ -11,7 +11,7 @@ export const App = () => {
   const [untoldJokes, setUntoldJokes] = useState([])
   const [untoldCount, setUntoldCount] = useState(0)
   const [toldCount, setToldCount] = useState(0)
-  
+
 
 
 
@@ -19,7 +19,7 @@ export const App = () => {
   const getData = () => {
     getAllJokes().then(res => setAllJokes(res))
   }
-  
+
   //useEffect for allJokes
   useEffect(() => {
     getData();
@@ -39,8 +39,8 @@ export const App = () => {
     const notToldJokes = allJokes.filter((jokester) => jokester.told === false)
     setUntoldJokes(notToldJokes)
     //sets counter for untoldJokes
-    setUntoldCount(notToldJokes.length) 
-    
+    setUntoldCount(notToldJokes.length)
+
   }, [allJokes])
 
 
@@ -50,20 +50,18 @@ export const App = () => {
     let jokeEntry = {
       text: newJoke,
       told: false
-  }
+    }
 
     //function responsible for posting new jokes entered
     saveJoke(jokeEntry)
-      .then(response => {
-        if (response.text !== null) {
-          setNewJoke("")
-          //have to refetch each time setNewJoke is invoked so joke entered will be rendered on the DOM
-          getData()
-        }
+      .then( res => {
+        setNewJoke("")
+        //have to refetch after each post so it is rendered on DOM
+        getData()
       })
   }
-    
-    //function responsible for putting new jokes in correct column based off button click
+
+  //function responsible for putting new jokes in correct column based off button click
   const handleJokeChange = (joke) => {
     joke.told = !joke.told
     putJoke(joke)
@@ -73,7 +71,7 @@ export const App = () => {
   //function responsible for deleting jokes when delete button is pressed  
   const handleJokeDelete = (joke) => {
     deleteJoke(joke)
-    .then(response => response.json())
+      .then(res => res.json())
   }
 
 
@@ -100,20 +98,25 @@ export const App = () => {
             Told Jokes
           </h2>
           {toldJokes.map((joke) => (
-
             <div className="joke-list-item" key={joke.id}>
-              <input
-                type="radio"
-                value={joke}
-                onClick={() => handleJokeChange(joke)}
+              {joke.text}
+              <div className="joke-list-action-toggle">
+                <input
+                  type="radio"
+                  value={joke}
+                  onClick={() => handleJokeChange(joke)}
+                />
+              </div>
+              <div className="joke-list-action-delete">
+                <input
+                  type="radio"
+                  value={joke}
+                  onClick={() => handleJokeDelete(joke)}
+                  className="delete"
 
-              />
-              <input
-                type="radio"
-                value={joke}
-                onClick={() => handleJokeDelete(joke)}
-
-              />{joke.text}</div>
+                />
+              </div>
+            </div>
           ))}
         </div>
         <div className="joke-list-container">
@@ -123,18 +126,22 @@ export const App = () => {
           </h2>
           {untoldJokes.map((joke) => (
             <div className="joke-list-item" key={joke.id}>
-              <input
-                type="radio"
-                value={joke}
-                onClick={() => handleJokeChange(joke)}
-
-              />
-              <input
-                type="radio"
-                value={joke}
-                onClick={() => handleJokeDelete(joke)}
-
-              />{joke.text}
+              {joke.text}
+              <div className="joke-list-action-toggle">
+                <input
+                  type="radio"
+                  value={joke}
+                  onClick={() => handleJokeChange(joke)}
+                />
+              </div>
+              <div className="joke-list-action-delete">
+                <input
+                  type="radio"
+                  value={joke}
+                  onClick={() => handleJokeDelete(joke)}
+                  className="delete"
+                />
+              </div>
             </div>
           ))}
         </div>

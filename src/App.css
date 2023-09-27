@@ -184,8 +184,8 @@ h2 {
   .joke-list-action-delete,
   .joke-list-action-toggle {
     border: none;
-    padding: 5px;
-    margin-left: 0.25rem;
+    padding: 2px;
+    margin-left: 1rem;
     background: transparent;
     color: var(--col-4);
   }
@@ -195,6 +195,7 @@ h2 {
     color: var(--col-0);
     cursor: pointer;
     transition: all 0.1s ease-in;
+    
   }
 
   /** Adds styling for when the user hovers over one of the toggle buttons*/
